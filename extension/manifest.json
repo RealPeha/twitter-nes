@@ -1,0 +1,19 @@
+{
+  "name": "Twitter NES",
+  "short_name": "TwitterNES",
+  "description": "Twitter NES. Yes",
+  "version": "1.0",
+  "manifest_version": 2,
+	"web_accessible_resources": [
+		"fonts/PressStart2P-Regular.ttf"
+	],
+  "content_scripts": [
+    {
+      "css": ["nes-twitter.css"],
+      "matches": [
+        "https://twitter.com/*",
+        "https://mobile.twitter.com/*"
+      ]
+    }
+  ]
+}

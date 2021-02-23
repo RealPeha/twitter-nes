@@ -1,0 +1,12 @@
+{
+  "name": "twitter-nes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node-sass --watch scss/nes.scss extension/nes-twitter.css"
+  },
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
+}

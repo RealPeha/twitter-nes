@@ -1,0 +1,89 @@
+@mixin btn-style($color, $background, $hover-background, $shadow) {
+  color: $color !important;
+  background-color: $background !important;
+
+  &::after {
+    position: absolute;
+    top: -$border-size;
+    right: -$border-size;
+    bottom: -$border-size;
+    left: -$border-size;
+    content: "";
+    box-shadow: inset -4px -4px $shadow;
+  }
+
+  &:hover {
+    color: $color;
+    text-decoration: none;
+    background-color: $hover-background;
+
+    &::after {
+      box-shadow: inset -6px -6px $shadow;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 6px rgba($shadow, 0.3);
+  }
+
+  &:active:not(:disabled)::after {
+    box-shadow: inset 4px 4px $shadow;
+  }
+}
+
+// Default style
+div[data-testid="tweetButtonInline"],
+a[data-testid="SideNav_NewTweet_Button"],
+div[data-testid="UserCell"] div[role="button"],
+section[aria-labelledby="accessible-list-0"] > div > div > div > div > div[role="button"],
+section[aria-labelledby="accessible-list-0"] > div > div > div > div > a[role="link"],
+aside[role="complementary"] > a[role="link"] {
+  @include compact-rounded-corners();
+
+  position: relative;
+  display: inline-block;
+  padding: 6px 8px;
+  margin: $border-size;
+  text-align: center;
+  vertical-align: middle;
+  cursor: $cursor-click-url, pointer;
+  user-select: none;
+  opacity: 1;
+  border-radius: 0;
+
+  @include btn-style(
+    $base-color,
+    map-get($default-colors, "normal"),
+    map-get($default-colors, "hover"),
+    map-get($default-colors, "shadow")
+  );
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
+    color: $base-color;
+    cursor: not-allowed;
+    background-color: map-get($disabled-colors, "normal");
+    box-shadow: inset -4px -4px map-get($disabled-colors, "shadow");
+    opacity: 0.6;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+  }
+}
+
+div[data-testid="tweetButtonInline"], a[data-testid="SideNav_NewTweet_Button"] {
+  @include btn-style(
+    $background-color,
+    map-get($primary-colors, "normal"),
+    map-get($primary-colors, "hover"),
+    map-get($primary-colors, "shadow")
+  );
+}
